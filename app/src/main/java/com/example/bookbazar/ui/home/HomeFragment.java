@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,58 +15,94 @@ import com.example.bookbazar.R;
 import com.example.bookbazar.ui.home.adapters.FeaturedBooksAdapter;
 import com.example.bookbazar.ui.home.adapters.PopularCategoriesAdapter;
 import com.example.bookbazar.ui.home.models.Book;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private RecyclerView featuredBooksRecyclerView;
+    private RecyclerView featuredBooksRecyclerView, popularCategoriesRecyclerView;
     private FeaturedBooksAdapter featuredBooksAdapter;
-
-    private RecyclerView popularCategoriesRecyclerView;
     private PopularCategoriesAdapter popularCategoriesAdapter;
-    private List<Book> featuredBooksList;
 
-    private List<Book> popularCategoriesList;
+    private List<Book> featuredBooksList = new ArrayList<>();
+    private List<Book> popularCategoriesList = new ArrayList<>();
 
-    // onCreateView instead of onCreate for fragments
+    private FirebaseFirestore db;
+
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false); // Use your fragment layout here
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // Initialize the RecyclerView and adapter
+        // Initialize Firestore
+        db = FirebaseFirestore.getInstance();
+
+        // Setup Featured Books RecyclerView
         featuredBooksRecyclerView = view.findViewById(R.id.featuredBooksRecyclerView);
         featuredBooksRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-
-        // Add sample books
-        featuredBooksList = new ArrayList<>();
-        featuredBooksList.add(new Book("The Alchemist", "Paulo Coelho", R.drawable.alchemist));
-        featuredBooksList.add(new Book("1984", "George Orwell", R.drawable.alchemist));
-        featuredBooksList.add(new Book("To Kill a Mockingbird", "Harper Lee", R.drawable.alchemist));
-        featuredBooksList.add(new Book("The Great Gatsby", "F. Scott Fitzgerald", R.drawable.alchemist));
-
-        featuredBooksAdapter = new FeaturedBooksAdapter(featuredBooksList);
+        featuredBooksAdapter = new FeaturedBooksAdapter(getContext(), featuredBooksList, book -> {
+            // Handle book click (e.g., Open Book Details)
+        });
         featuredBooksRecyclerView.setAdapter(featuredBooksAdapter);
 
-
-        // Initialize the RecyclerView and adapter for Popular Categories
+        // Setup Popular Categories RecyclerView
         popularCategoriesRecyclerView = view.findViewById(R.id.popularCategoriesRecyclerView);
         popularCategoriesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-
-        // Add sample popular categories
-        popularCategoriesList = new ArrayList<>();
-        popularCategoriesList.add(new Book("The Alchemist", "Paulo Coelho", R.drawable.alchemist));
-        popularCategoriesList.add(new Book("The Alchemist", "Paulo Coelho", R.drawable.alchemist));
-        popularCategoriesList.add(new Book("The Alchemist", "Paulo Coelho", R.drawable.alchemist));
-        popularCategoriesList.add(new Book("The Alchemist", "Paulo Coelho", R.drawable.alchemist));
-        popularCategoriesList.add(new Book("The Alchemist", "Paulo Coelho", R.drawable.alchemist));
-
-        // Set up the adapter for Popular Categories
-        popularCategoriesAdapter = new PopularCategoriesAdapter(popularCategoriesList);
+        popularCategoriesAdapter = new PopularCategoriesAdapter(getContext(), popularCategoriesList);
         popularCategoriesRecyclerView.setAdapter(popularCategoriesAdapter);
 
-        return view; // Return the view that you inflated
+        // Load Books from Firestore
+        fetchFeaturedBooks();
+        fetchPopularCategories();
+
+        return view;
+    }
+
+    // Fetch featured books directly from Firestore
+    private void fetchFeaturedBooks() {
+        db.collection("books")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    featuredBooksList.clear();
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        String title = document.getString("title");
+                        String author = document.getString("author");
+                        String genre = document.getString("genre");
+                        Double price = document.getDouble("price");
+                        String condition = document.getString("condition");
+                        String imageUrl = document.getString("imageUrl");
+
+                        if (title != null && author != null && genre != null && price != null && condition != null && imageUrl != null) {
+                            featuredBooksList.add(new Book(title, author, genre, price, condition, imageUrl));
+                        }
+                    }
+                    featuredBooksAdapter.setBooks(featuredBooksList); // Update RecyclerView
+                })
+                .addOnFailureListener(e -> {
+                    // Handle error (e.g., show a Toast message)
+                });
+    }
+
+    // Fetch popular categories directly from Firestore
+    private void fetchPopularCategories() {
+        db.collection("categories") // Ensure you have this collection in Firestore
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    popularCategoriesList.clear();
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        String categoryName = document.getString("name");
+                        String categoryImageUrl = document.getString("imageUrl");
+                        if (categoryName != null && categoryImageUrl != null) {
+                            popularCategoriesList.add(new Book(categoryName, "", "", 0.0, "", categoryImageUrl));
+                        }
+                    }
+                    popularCategoriesAdapter.setBooks(popularCategoriesList); // Update RecyclerView
+                })
+                .addOnFailureListener(e -> {
+                    // Handle error
+                });
     }
 }

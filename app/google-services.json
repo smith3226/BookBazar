@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "247670187021",
+    "project_id": "bookbazar-7a86e",
+    "storage_bucket": "bookbazar-7a86e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247670187021:android:7ca3b9c1a315c158c0a144",
+        "android_client_info": {
+          "package_name": "com.example.bookbazar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247670187021-lb6s4g4it7utrshpog846ovj0q07qtre.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bookbazar",
+            "certificate_hash": "c43924504bd3503a7cdf3dc8783b2e01d65862c2"
+          }
+        },
+        {
+          "client_id": "247670187021-md1eifj0mlh8p5g0jhrbjhekvob81iti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCds17YIACcnG_2l9I74QsFDg9L2YbOBHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247670187021-md1eifj0mlh8p5g0jhrbjhekvob81iti.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

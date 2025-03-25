@@ -3,23 +3,29 @@ package com.example.bookbazar.ui.home.models;
 public class Book {
     private String title;
     private String author;
-    private int imageResId; // Drawable resource ID for book cover
+    private String genre;
+    private double price;
+    private String condition;
+    private String imageUrl;
 
-    public Book(String title, String author, int imageResId) {
+    public Book() {
+        // Empty constructor required for Firestore
+    }
+
+    public Book(String title, String author, String genre, double price, String condition, String imageUrl) {
         this.title = title;
         this.author = author;
-        this.imageResId = imageResId;
+        this.genre = genre;
+        this.price = price;
+        this.condition = condition;
+        this.imageUrl = imageUrl;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public int getImageResId() {
-        return imageResId;
-    }
+    // Getters and Setters
+    public String getTitle() { return title; }
+    public String getAuthor() { return author; }
+    public String getGenre() { return genre; }
+    public double getPrice() { return price; }
+    public String getCondition() { return condition; }
+    public String getImageUrl() { return imageUrl; }
 }

@@ -1,5 +1,6 @@
 package com.example.bookbazar.ui.home.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +13,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bookbazar.R;
 import com.example.bookbazar.ui.home.models.Book;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import coil.ImageLoader;
+import coil.request.ImageRequest;
 
 public class FeaturedBooksAdapter extends RecyclerView.Adapter<FeaturedBooksAdapter.BookViewHolder> {
 
     private List<Book> bookList;
+    private final Context context;
+    private final OnBookClickListener bookClickListener;
 
-    public FeaturedBooksAdapter(List<Book> bookList) {
-        this.bookList = bookList;
+    public interface OnBookClickListener {
+        void onBookClick(Book book);
+    }
+
+    public FeaturedBooksAdapter(Context context, List<Book> bookList, OnBookClickListener listener) {
+        this.context = context;
+        this.bookList = bookList != null ? bookList : new ArrayList<>();
+        this.bookClickListener = listener;
     }
 
     @NonNull
@@ -34,12 +47,33 @@ public class FeaturedBooksAdapter extends RecyclerView.Adapter<FeaturedBooksAdap
         Book book = bookList.get(position);
         holder.bookTitle.setText(book.getTitle());
         holder.bookAuthor.setText(book.getAuthor());
-        holder.bookImage.setImageResource(book.getImageResId());
+
+        // Load book image using Coil
+        if (book.getImageUrl() != null && !book.getImageUrl().isEmpty()) {
+            ImageLoader imageLoader = new ImageLoader.Builder(context).build();
+            ImageRequest request = new ImageRequest.Builder(context)
+                    .data(book.getImageUrl())
+                    .crossfade(true)
+                    .target(holder.bookImage)
+                    .build();
+            imageLoader.enqueue(request);
+        } else {
+            holder.bookImage.setImageResource(R.drawable.alchemist);
+        }
+
+        // Handle item click
+        holder.itemView.setOnClickListener(v -> bookClickListener.onBookClick(book));
     }
 
     @Override
     public int getItemCount() {
         return bookList.size();
+    }
+
+    // Method to update books dynamically
+    public void setBooks(List<Book> newBooks) {
+        this.bookList = newBooks;
+        notifyDataSetChanged();
     }
 
     public static class BookViewHolder extends RecyclerView.ViewHolder {

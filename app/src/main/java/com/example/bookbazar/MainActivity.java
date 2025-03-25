@@ -8,6 +8,7 @@ import com.example.bookbazar.R;
 import com.example.bookbazar.ui.category.CategoriesFragment;
 import com.example.bookbazar.ui.chat.ChatFragment;
 import com.example.bookbazar.ui.home.HomeFragment;
+import com.example.bookbazar.ui.profile.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_chat) {
                 selectedFragment = new ChatFragment(); // Chat Fragment
             }
+            else if (itemId == R.id.nav_profile) {
+                selectedFragment = new ProfileFragment(); // Chat Fragment
+            }
+
 
             if (selectedFragment != null) {
                 loadFragment(selectedFragment);

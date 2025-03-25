@@ -9,14 +9,16 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/topAppBar"
         android:layout_width="0dp"
+        android:layout_marginTop="0dp"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/navbar_background"
         app:menu="@menu/top_menu"
-        app:title="Book Bazar" />
+        app:title="Book Bazar"
+        app:titleTextColor="@color/white"/>
 
     <!-- Fragment Container for Bottom Navigation -->
     <FrameLayout
