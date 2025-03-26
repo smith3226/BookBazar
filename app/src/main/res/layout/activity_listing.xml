@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <!-- Image Upload Section -->
+        <!-- Image Upload Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Book Images"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imgUpload1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_add_photo"
+            android:background="@android:color/darker_gray"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="selectImage"/>
+
+            <ImageView
+                android:id="@+id/imgUpload2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_add_photo"
+            android:background="@android:color/darker_gray"
+            android:padding="8dp"
+            android:layout_marginStart="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="selectImage"/>
+
+            <ImageView
+                android:id="@+id/imgUpload3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_add_photo"
+            android:background="@android:color/darker_gray"
+            android:padding="8dp"
+            android:layout_marginStart="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="selectImage"/>
+        </LinearLayout>
+
+
+        <!-- Book Name -->
+        <EditText
+            android:id="@+id/etBookName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Book Name"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginTop="12dp"/>
+
+        <!-- Author Name -->
+        <EditText
+            android:id="@+id/etAuthorName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Author Name"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Genre -->
+        <EditText
+            android:id="@+id/etBookGenre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Genre"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Book Price -->
+        <EditText
+            android:id="@+id/etBookPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Price (in $)"
+            android:inputType="numberDecimal"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Book Condition -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Book Condition"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="12dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgBookCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <RadioButton
+                android:id="@+id/rbNew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New"/>
+
+            <RadioButton
+                android:id="@+id/rbLikeNew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Like New"
+                android:layout_marginStart="12dp"/>
+
+            <RadioButton
+                android:id="@+id/rbUsed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Used"
+                android:layout_marginStart="12dp"/>
+
+            <RadioButton
+                android:id="@+id/rbOld"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Old"
+                android:layout_marginStart="12dp"/>
+        </RadioGroup>
+
+        <!-- Book Description -->
+        <EditText
+            android:id="@+id/etBookDescription"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="Book Description"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:background="@android:drawable/edit_text"
+            android:gravity="top"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/btnSubmitListing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Listing"
+            android:backgroundTint="@color/purple_500"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,6 +1,7 @@
 package com.example.bookbazar.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,7 @@ public class HomeFragment extends Fragment {
 
         // Load Books from Firestore
         fetchFeaturedBooks();
-        fetchPopularCategories();
+       // fetchPopularCategories();
 
         return view;
     }
@@ -74,10 +75,12 @@ public class HomeFragment extends Fragment {
                         Double price = document.getDouble("price");
                         String condition = document.getString("condition");
                         String imageUrl = document.getString("imageUrl");
+                        String description = document.getString("description");
 
                         if (title != null && author != null && genre != null && price != null && condition != null && imageUrl != null) {
-                            featuredBooksList.add(new Book(title, author, genre, price, condition, imageUrl));
+                            featuredBooksList.add(new Book(title, author, genre, price, condition, description));
                         }
+                        Log.d("HomeFragment", "Book added: " + title);
                     }
                     featuredBooksAdapter.setBooks(featuredBooksList); // Update RecyclerView
                 })
@@ -87,22 +90,22 @@ public class HomeFragment extends Fragment {
     }
 
     // Fetch popular categories directly from Firestore
-    private void fetchPopularCategories() {
-        db.collection("categories") // Ensure you have this collection in Firestore
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    popularCategoriesList.clear();
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        String categoryName = document.getString("name");
-                        String categoryImageUrl = document.getString("imageUrl");
-                        if (categoryName != null && categoryImageUrl != null) {
-                            popularCategoriesList.add(new Book(categoryName, "", "", 0.0, "", categoryImageUrl));
-                        }
-                    }
-                    popularCategoriesAdapter.setBooks(popularCategoriesList); // Update RecyclerView
-                })
-                .addOnFailureListener(e -> {
-                    // Handle error
-                });
+//    private void fetchPopularCategories() {
+//        db.collection("categories") // Ensure you have this collection in Firestore
+//                .get()
+//                .addOnSuccessListener(queryDocumentSnapshots -> {
+//                    popularCategoriesList.clear();
+//                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+//                        String categoryName = document.getString("name");
+//                        String categoryImageUrl = document.getString("imageUrl");
+//                        if (categoryName != null && categoryImageUrl != null) {
+//                            popularCategoriesList.add(new Book(categoryName, "", "", 0.0, "", categoryImageUrl));
+//                        }
+//                    }
+//                    popularCategoriesAdapter.setBooks(popularCategoriesList); // Update RecyclerView
+//                })
+//                .addOnFailureListener(e -> {
+//                    // Handle error
+//                });
     }
-}
+

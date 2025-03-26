@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bookbazar.LoginActivity;
 import com.example.bookbazar.R;
+import com.example.bookbazar.ui.listing.AddListing;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -37,6 +38,7 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_profile_screen, container, false);
 
+
         // Initialize Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
 
@@ -45,6 +47,7 @@ public class ProfileFragment extends Fragment {
         userEmail = view.findViewById(R.id.userEmail);
         profileImage = view.findViewById(R.id.profileImage);
         Button btnLogout = view.findViewById(R.id.btnLogout);
+        Button addListingBtn = view.findViewById(R.id.addListingBtn);
 
         // Get current user info
         FirebaseUser user = mAuth.getCurrentUser();
@@ -62,6 +65,14 @@ public class ProfileFragment extends Fragment {
                 imageLoader.enqueue(request);
             }
         }
+
+//        add listings button
+        addListingBtn.setOnClickListener(activityView ->{
+                Intent intent = new Intent(getActivity(), AddListing.class);
+                startActivity(intent);
+        });
+
+
 
         // Logout function
         btnLogout.setOnClickListener(v -> {
