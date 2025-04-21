@@ -1,15 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">  <!-- Add this line for app:showAsAction -->
-    <item
-        android:id="@+id/action_notifications"
-        android:icon="@drawable/ic_notifications"
-        android:title="Notifications"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_cart"
-        android:icon="@drawable/ic_cart"
-        android:title="Cart"
-        android:background="@drawable/navbar_background"
-        app:showAsAction="ifRoom" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    
+    >  <!-- Add this line for app:showAsAction -->
 </menu>

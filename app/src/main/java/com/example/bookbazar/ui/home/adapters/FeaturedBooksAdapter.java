@@ -1,6 +1,7 @@
 package com.example.bookbazar.ui.home.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookbazar.R;
+import com.example.bookbazar.ui.home.BookDetailActivity;
 import com.example.bookbazar.ui.home.models.Book;
 
 import java.util.ArrayList;
@@ -48,7 +50,6 @@ public class FeaturedBooksAdapter extends RecyclerView.Adapter<FeaturedBooksAdap
         holder.bookTitle.setText(book.getTitle());
         holder.bookAuthor.setText(book.getAuthor());
 
-        // Load book image using Coil
         if (book.getImageUrl() != null && !book.getImageUrl().isEmpty()) {
             ImageLoader imageLoader = new ImageLoader.Builder(context).build();
             ImageRequest request = new ImageRequest.Builder(context)
@@ -62,7 +63,17 @@ public class FeaturedBooksAdapter extends RecyclerView.Adapter<FeaturedBooksAdap
         }
 
         // Handle item click
-        holder.itemView.setOnClickListener(v -> bookClickListener.onBookClick(book));
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, BookDetailActivity.class);
+            intent.putExtra("title", book.getTitle());
+            intent.putExtra("author", book.getAuthor());
+            intent.putExtra("imageUrl", book.getImageUrl());
+            intent.putExtra("description", book.getGenre()); // fallback
+            intent.putExtra("workKey", book.getWorkKey());
+            context.startActivity(intent);
+        });
+
+
     }
 
     @Override

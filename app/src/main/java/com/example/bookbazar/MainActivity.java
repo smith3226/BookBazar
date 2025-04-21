@@ -4,11 +4,11 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.bookbazar.R;
-import com.example.bookbazar.ui.category.CategoriesFragment;
-import com.example.bookbazar.ui.chat.ChatFragment;
+import com.example.bookbazar.ui.savedListings.SavedListings;
 import com.example.bookbazar.ui.home.HomeFragment;
 import com.example.bookbazar.ui.profile.ProfileFragment;
+import com.example.bookbazar.ui.savedListings.SavedListings;
+import com.example.bookbazar.ui.search.Search;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,15 +30,13 @@ public class MainActivity extends AppCompatActivity {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_home) {
                 selectedFragment = new HomeFragment(); // Home Fragment
-            } else if (itemId == R.id.nav_categories) {
-                selectedFragment = new CategoriesFragment(); // Categories Fragment
-            } else if (itemId == R.id.nav_chat) {
-                selectedFragment = new ChatFragment(); // Chat Fragment
+            } else if (itemId == R.id.nav_savedListings) {
+                selectedFragment = new SavedListings(); // Categories Fragment
+            } else if (itemId == R.id.nav_search) {
+                selectedFragment = new Search(); // Search Fragment
+            } else if (itemId == R.id.nav_profile) {
+                selectedFragment = new ProfileFragment(); // Profile Fragment
             }
-            else if (itemId == R.id.nav_profile) {
-                selectedFragment = new ProfileFragment(); // Chat Fragment
-            }
-
 
             if (selectedFragment != null) {
                 loadFragment(selectedFragment);

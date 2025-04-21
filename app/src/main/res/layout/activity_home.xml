@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/navbar_background"
         app:menu="@menu/top_menu"
-        app:title="Book Bazar"
+        app:title="BookNest"
         app:titleTextColor="@color/white"/>
 
     <!-- Fragment Container for Bottom Navigation -->

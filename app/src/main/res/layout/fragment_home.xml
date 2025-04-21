@@ -1,75 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    android:fillViewport="true">
 
-    <!-- Featured Books Section -->
-    <TextView
-        android:id="@+id/featuredBooksTitle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/homeContainer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Featured Books"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingStart="16dp" />
+        android:orientation="vertical"
+        android:padding="8dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/featuredBooksRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/featuredBooksTitle"
-        tools:listitem="@layout/item_book_card" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Featured Books"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingVertical="8dp" />
 
-    <!-- Popular Categories Section -->
-    <TextView
-        android:id="@+id/popularCategoriesTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Popular Categories"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/featuredBooksRecyclerView"
-        android:paddingStart="16dp" />
+        <ProgressBar
+            android:id="@+id/trendingLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Small" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/popularCategoriesRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/popularCategoriesTitle"
-        tools:listitem="@layout/item_category_card" />
-
-    <!-- Recommended for You Section -->
-    <TextView
-        android:id="@+id/recommendedForYou"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recommended for You"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/popularCategoriesRecyclerView"
-        android:paddingStart="16dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recommendedForYouRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recommendedForYou"
-        tools:listitem="@layout/item_book_card" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/featuredBooksRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Featured Textbooks"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingVertical="8dp" />
+
+        <ProgressBar
+            android:id="@+id/textbookLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Small" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/textBooksRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp" />
+
+        <!-- Genres -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Genres"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingVertical="8dp" />
+
+        <ProgressBar
+            android:id="@+id/genresLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Small" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/popularCategoriesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp" />
+
+        <!-- Book Listings -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Listings for you"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingVertical="8dp" />
+
+        <ProgressBar
+            android:id="@+id/listingsLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Small" />
+
+
+        <TextView
+            android:id="@+id/noListingsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No listings found."
+            android:textSize="16sp"
+            android:textColor="#888888"
+            android:gravity="center"
+            android:visibility="gone"
+            android:padding="12dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/bookListingRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:nestedScrollingEnabled="true" />
+
+
+    </LinearLayout>
+</ScrollView>

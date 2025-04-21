@@ -34,12 +34,15 @@ android {
 
 dependencies {
 
+    implementation(libs.stripe.android)
+    implementation(libs.okhttp.v4110)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.androidx.appcompat)
     implementation(libs.google.firebase.auth)
+    implementation(libs.androidx.swiperefreshlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

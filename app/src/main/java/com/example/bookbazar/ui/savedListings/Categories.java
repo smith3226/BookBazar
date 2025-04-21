@@ -1,4 +1,4 @@
-package com.example.bookbazar.ui.chat;
+package com.example.bookbazar.ui.savedListings;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,18 +12,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bookbazar.R;
 
-public class ChatFragment extends Fragment {
+public class Categories extends Fragment {
+    private static final String TAG = "CategoriesFragment";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d("ChatFragment", "I am here");
-
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_book_list, container, false);
-
-        // Log when the view is created
-        Log.d("ChatFragment", "onViewCreated: View is created");
-
-        return view;
+        Log.d(TAG, "onCreateView: Categories Fragment is created");
+        return inflater.inflate(R.layout.activity_saved_list, container, false);
     }
 }

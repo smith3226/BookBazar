@@ -5,15 +5,18 @@
         android:icon="@drawable/ic_home"
         android:title="Home" />
 
-    <item
-        android:id="@+id/nav_categories"
-        android:icon="@drawable/ic_categories"
-        android:title="Categories" />
 
     <item
-        android:id="@+id/nav_chat"
-        android:icon="@drawable/ic_chat"
-        android:title="Chat" />
+        android:id="@+id/nav_search"
+        android:icon="@drawable/search_24px"
+        android:title="Search" />
+
+    <item
+        android:id="@+id/nav_savedListings"
+        android:icon="@drawable/sell_24px"
+        android:title="Saved Listings" />
+
+
 
     <item
         android:id="@+id/nav_profile"

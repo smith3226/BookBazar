@@ -43,7 +43,7 @@
             android:padding="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:onClick="selectImage"/>
+            />
 
             <ImageView
                 android:id="@+id/imgUpload2"
@@ -56,7 +56,7 @@
             android:layout_marginStart="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:onClick="selectImage"/>
+            />
 
             <ImageView
                 android:id="@+id/imgUpload3"
@@ -69,7 +69,7 @@
             android:layout_marginStart="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:onClick="selectImage"/>
+            />
         </LinearLayout>
 
 
@@ -95,16 +95,14 @@
             android:background="@android:drawable/edit_text"
             android:layout_marginTop="8dp"/>
 
-        <!-- Genre -->
-        <EditText
-            android:id="@+id/etBookGenre"
+        <Spinner
+            android:id="@+id/spinnerGenre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Genre"
-            android:textSize="16sp"
-            android:padding="10dp"
+            android:layout_marginTop="8dp"
             android:background="@android:drawable/edit_text"
-            android:layout_marginTop="8dp"/>
+            android:padding="5dp" />
+
 
         <!-- Book Price -->
         <EditText
@@ -127,6 +125,8 @@
             android:textStyle="bold"
             android:paddingTop="12dp"/>
 
+
+
         <RadioGroup
             android:id="@+id/rgBookCondition"
             android:layout_width="match_parent"
@@ -139,6 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New"/>
+
 
             <RadioButton
                 android:id="@+id/rbLikeNew"
@@ -160,6 +161,8 @@
                 android:layout_height="wrap_content"
                 android:text="Old"
                 android:layout_marginStart="12dp"/>
+
+
         </RadioGroup>
 
         <!-- Book Description -->
@@ -173,6 +176,13 @@
             android:background="@android:drawable/edit_text"
             android:gravity="top"
             android:layout_marginTop="8dp"/>
+
+        <RadioButton
+            android:id="@+id/rbInterestedForSwap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Interested for Swap"
+            android:layout_marginStart="12dp" />
 
         <!-- Submit Button -->
         <Button
